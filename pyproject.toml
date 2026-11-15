@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "defectinspect"
+version = "0.1.0"
+description = "Steel / PCB surface defect inspection: YOLO11 detection, SAM2 masks, active learning, CPU/edge deployment with ONNX Runtime."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Ali Hassan" }]
+keywords = ["computer-vision", "yolo11", "sam2", "defect-detection", "industrial-inspection", "onnx", "active-learning"]
+dependencies = ["numpy>=1.26", "opencv-python-headless>=4.9", "onnxruntime>=1.17", "pyyaml>=6.0"]
+
+[project.optional-dependencies]
+train = ["ultralytics>=8.3", "torch>=2.2"]
+edge = ["openvino>=2024.0"]
+api = ["fastapi>=0.110", "uvicorn[standard]>=0.29", "python-multipart>=0.0.9"]
+ui = ["streamlit>=1.36", "pandas>=2.0"]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "W"]
+ignore = ["B008", "E501", "B905", "E702"]

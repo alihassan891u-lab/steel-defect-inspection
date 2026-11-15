@@ -1,0 +1,9 @@
+# Inspection rules (edit without touching code)
+review_conf: 0.25        # detections below this are ignored
+fail_conf: 0.50          # at/above this a defect counts; between review_conf and fail_conf -> REVIEW by a person
+default:
+  max_area_pct: 0.0      # any confident defect fails...
+classes:                 # ...unless a class has a tolerance
+  patches:
+    max_area_pct: 1.5    # small patches (<1.5% of the surface) are cosmetic
+mm_per_px: null          # set from camera calibration (e.g. 0.05) to report defect area in mm²
